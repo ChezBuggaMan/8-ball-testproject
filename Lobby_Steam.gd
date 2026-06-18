@@ -33,6 +33,8 @@ func _on_lobby_created(result: int, lobby_id_in: int):
 		peer.server_relay = true
 		peer.create_host()
 		multiplayer.multiplayer_peer = peer
+		print("Peer:", multiplayer.multiplayer_peer)
+		print("Connection:", multiplayer.multiplayer_peer.get_connection_status())
 		#Creating/Removing player function goes here
 
 func join_steam_lobby(target_lobby_id: int):
@@ -50,5 +52,7 @@ func _on_lobby_joined(lobby_id: int, permissions: int, response: int, userid: in
 	peer.create_client(Steam.getLobbyOwner(lobby_id))
 	multiplayer.multiplayer_peer = peer
 	print("Joined Steam Lobby!")
+	print("Peer:", multiplayer.multiplayer_peer)
+	print("Connection:", multiplayer.multiplayer_peer.get_connection_status())
 	
 	is_joining = false
