@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkvaoapusncak" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://cljemw2ynqmns" path="res://chat_box.gd" id="2_7vrkn"]
+[ext_resource type="Script" uid="uid://bp7awi6j8f3ga" path="res://debug.gd" id="3_fu7sn"]
 
 [node name="Control" type="Control" unique_id=1115916712]
 layout_mode = 3
@@ -18,8 +19,10 @@ script = ExtResource("1_06t4h")
 
 [node name="Label" type="Label" parent="." unique_id=331828558]
 layout_mode = 0
-offset_right = 1046.0
-offset_bottom = 98.0
+offset_left = 6.0
+offset_top = 16.0
+offset_right = 1052.0
+offset_bottom = 114.0
 text = "WOW AWESOME MULTIPLAYER TEST GAME LETS GOOOOOOOOOOOOOOOOOOOOOOOOOOO"
 
 [node name="Label2" type="Label" parent="." unique_id=1967678443]
@@ -74,17 +77,7 @@ offset_left = 1.0
 offset_top = 485.0
 offset_right = 41.0
 offset_bottom = 508.0
-text = "Enter a name:"
-
-[node name="NameEditor" type="LineEdit" parent="." unique_id=384201318]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 505.0
-offset_right = 160.0
-offset_bottom = 536.0
-text = "DefaultPlayer"
-placeholder_text = "DefaultPlayer"
-max_length = 32
+text = "Logged in as:"
 
 [node name="IPEditor" type="LineEdit" parent="." unique_id=1509628110]
 layout_mode = 0
@@ -122,3 +115,42 @@ offset_left = 802.0
 offset_top = 628.0
 offset_right = 1151.5
 offset_bottom = 659.0
+
+[node name="Debug" type="Control" parent="." unique_id=2107651432]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_fu7sn")
+
+[node name="ConnectionStatus" type="Label" parent="Debug" unique_id=241659915]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 592.0
+offset_right = 474.0
+offset_bottom = 615.0
+text = "Status"
+
+[node name="PeerStatus" type="Label" parent="Debug" unique_id=302869259]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 613.0
+offset_right = 468.0
+offset_bottom = 636.0
+text = "Peer"
+
+[node name="SteamID" type="Label" parent="Debug" unique_id=170072649]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 634.0
+offset_right = 493.0
+offset_bottom = 657.0
+text = "SteamID"
+horizontal_alignment = 1
+
+[node name="SteamName" type="Label" parent="." unique_id=487263967]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 507.0
+offset_right = 43.0
+offset_bottom = 530.0
+text = "DefaultName"

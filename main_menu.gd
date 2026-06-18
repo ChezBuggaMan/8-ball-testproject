@@ -8,8 +8,9 @@ func _ready() -> void:
 	$CreateButton.pressed.connect(create_new)
 	$JoinButton.pressed.connect(join_game)
 	#$PlayButton
-	$NameEditor.text_changed.connect(update_name)
+	#$NameEditor.text_changed.connect(update_name)
 	$IPEditor.text_changed.connect(update_IP)
+	$SteamName.text = Steam.getPersonaName()
 
 func create_new():
 	print("Create button pressed, attempting to creating game")
