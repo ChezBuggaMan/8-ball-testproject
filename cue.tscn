@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dsqy8fvbbefd4"]
+
+[ext_resource type="Script" uid="uid://dd5ngjm67paq" path="res://cue.gd" id="1_nykms"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n8yml"]
+
+[node name="Cue" type="MeshInstance3D" unique_id=164307636]
+transform = Transform3D(0.2, 0, 0, 0, -6.556708e-08, 0.2, 0, -1.5, -8.742278e-09, 0, 0, 0)
+mesh = SubResource("CylinderMesh_n8yml")
+script = ExtResource("1_nykms")

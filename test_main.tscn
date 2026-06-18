@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ci0cuynlssae1"]
+
+[ext_resource type="PackedScene" uid="uid://dsqy8fvbbefd4" path="res://cue.tscn" id="1_b6ro0"]
+[ext_resource type="Script" uid="uid://cgsk0t2twoyyh" path="res://Game.gd" id="2_2n3av"]
+[ext_resource type="PackedScene" uid="uid://bv3kqwt86k6ig" path="res://player.tscn" id="2_tcanr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b6ro0"]
+
+[sub_resource type="Sky" id="Sky_tcanr"]
+sky_material = SubResource("ProceduralSkyMaterial_b6ro0")
+
+[sub_resource type="Environment" id="Environment_b6ro0"]
+background_mode = 2
+sky = SubResource("Sky_tcanr")
+
+[sub_resource type="BoxMesh" id="BoxMesh_b6ro0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m3s8f"]
+
+[sub_resource type="Sky" id="Sky_b6ro0"]
+sky_material = SubResource("ProceduralSkyMaterial_m3s8f")
+
+[sub_resource type="Environment" id="Environment_tcanr"]
+background_mode = 2
+sky = SubResource("Sky_b6ro0")
+
+[node name="TestMain" type="Node" unique_id=14187367]
+
+[node name="Game" type="Node3D" parent="." unique_id=826815727]
+script = ExtResource("2_2n3av")
+
+[node name="Player" parent="Game" unique_id=1508103537 instance=ExtResource("2_tcanr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9385562, 0.2586284, 0.09207338)
+
+[node name="Camera3D" type="Camera3D" parent="Game" unique_id=1844661281]
+transform = Transform3D(1, 0, 0, 0, 0.58512753, 0.8109413, 0, -0.8109413, 0.58512753, 0, 4.54475, 4.999858)
+environment = SubResource("Environment_b6ro0")
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Game" unique_id=745208148]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -0.7779596, 0)
+mesh = SubResource("BoxMesh_b6ro0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Game" unique_id=665150152]
+environment = SubResource("Environment_tcanr")
+
+[node name="Cue" parent="Game" unique_id=164307636 instance=ExtResource("1_b6ro0")]

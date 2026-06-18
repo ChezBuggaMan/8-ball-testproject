@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://cf4rmt1dgtaql"]
+
+[ext_resource type="Script" uid="uid://dkvaoapusncak" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://cljemw2ynqmns" path="res://chat_box.gd" id="2_7vrkn"]
+
+[node name="Control" type="Control" unique_id=1115916712]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -15.0
+offset_right = -3.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="Label" type="Label" parent="." unique_id=331828558]
+layout_mode = 0
+offset_right = 1046.0
+offset_bottom = 98.0
+text = "WOW AWESOME MULTIPLAYER TEST GAME LETS GOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+
+[node name="Label2" type="Label" parent="." unique_id=1967678443]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 182.0
+offset_right = 1050.0
+offset_bottom = 280.0
+text = "Singleplayer (Boring)"
+
+[node name="Label3" type="Label" parent="." unique_id=363157010]
+layout_mode = 0
+offset_top = 308.0
+offset_right = 1046.0
+offset_bottom = 406.0
+text = "Multiplayer"
+
+[node name="CreateButton" type="Button" parent="." unique_id=583635261]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 377.0
+offset_right = 104.0
+offset_bottom = 412.0
+text = "Create"
+
+[node name="JoinButton" type="Button" parent="." unique_id=290338765]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 336.0
+offset_right = 102.0
+offset_bottom = 371.0
+text = "Join"
+
+[node name="PlayButton" type="Button" parent="." unique_id=1768547673]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 218.0
+offset_right = 105.0
+offset_bottom = 253.0
+text = "Play"
+
+[node name="MultiplayerText" type="Label" parent="." unique_id=39044065]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 342.0
+offset_right = 176.0
+offset_bottom = 365.0
+
+[node name="Label4" type="Label" parent="." unique_id=1296650933]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 485.0
+offset_right = 41.0
+offset_bottom = 508.0
+text = "Enter a name:"
+
+[node name="NameEditor" type="LineEdit" parent="." unique_id=384201318]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 505.0
+offset_right = 160.0
+offset_bottom = 536.0
+text = "DefaultPlayer"
+placeholder_text = "DefaultPlayer"
+max_length = 32
+
+[node name="IPEditor" type="LineEdit" parent="." unique_id=1509628110]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 338.0
+offset_right = 268.0
+offset_bottom = 369.0
+placeholder_text = "Enter an ID"
+max_length = 32
+
+[node name="ChatBoxController" type="Control" parent="." unique_id=813371369]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_7vrkn")
+
+[node name="ChatBox" type="VBoxContainer" parent="ChatBoxController" unique_id=1959327635]
+layout_mode = 0
+offset_left = 804.0
+offset_top = 451.0
+offset_right = 1150.0
+offset_bottom = 626.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChatBoxController/ChatBox" unique_id=335588397]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="ChatHistory" type="VBoxContainer" parent="ChatBoxController/ChatBox/ScrollContainer" unique_id=453954932]
+layout_mode = 2
+
+[node name="ChatInput" type="LineEdit" parent="ChatBoxController" unique_id=1888189486]
+layout_mode = 0
+offset_left = 802.0
+offset_top = 628.0
+offset_right = 1151.5
+offset_bottom = 659.0
