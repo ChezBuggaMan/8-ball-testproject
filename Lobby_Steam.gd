@@ -82,12 +82,14 @@ signal countdown_tick(seconds_left: int)
 
 var countdown_active: bool = false
 
+#Triggered when the hosts requests to start the game early, or when the lobby is full
 func request_start_game():
 	# Only the host is allowed to actually trigger this
 	if not multiplayer.is_server():
 		return
 	_begin_countdown.rpc()
 
+# Begins the countdown to game start
 @rpc("call_local", "reliable")
 func _begin_countdown():
 	if countdown_active:
@@ -103,6 +105,7 @@ func _begin_countdown():
 	# call_local already means this runs on everyone via the RPC itself.
 	get_tree().change_scene_to_file("res://test_main.tscn")
 
+# Peer connection callbacks
 func _peer_connected(id):
 	print("Peer connected: ", id)
 	if multiplayer.get_peers().size() == Steam.getLobbyMemberLimit(LobbySteam.lobby_id):
@@ -110,3 +113,26 @@ func _peer_connected(id):
 
 func _peer_disconnected(id):
 	print("Peer disconnected: ", id)
+
+# These functions ensure that
+var clients_ready: Dictionary = {}
+
+@rpc("any_peer", "call_local", "reliable")
+func _notify_scene_ready():
+	var sender = multiplayer.get_remote_sender_id()
+	if sender == 0:
+		sender = multiplayer.get_unique_id() # host calling locally
+	clients_ready[sender] = true
+	print ("Peer ready: ", sender, ", ready set: ", clients_ready.keys())
+	
+	if multiplayer.is_server():
+		_check_all_ready()
+
+func _check_all_ready():
+	var expected = multiplayer.get_peers()
+	expected.append(multiplayer.get_unique_id())
+	for id in expected:
+		if not clients_ready.has(id):
+			return
+	# Otherwise everyone is loaded, and its safe to spawn them
+	get_tree().call_group("spawner_ready_listeners", "do_spawn")
