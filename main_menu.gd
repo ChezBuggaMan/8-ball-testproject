@@ -21,7 +21,7 @@ var MaxPlayers = 2
 func _ready() -> void:
 	create_button.pressed.connect(open_host_tab)
 	join_button.pressed.connect(join_game)
-	play_button.pressed.connect(start_game)
+	play_button.pressed.connect(LobbySteam.start_game) # Singelplayer test
 	id_editor.text_changed.connect(update_ID)
 	host_button.pressed.connect(create_new)
 	max_player_option_button.item_selected.connect(max_players_updated)
@@ -37,6 +37,8 @@ func create_new():
 	LobbySteam.create_steam_lobby(MaxPlayers)
 	
 	popup_panel.popup_centered()
+	
+	print(LobbySteam.players)
 
 # Tells steam to put us in the requested lobby
 func join_game():
@@ -52,5 +54,5 @@ func max_players_updated(num):
 	MaxPlayers = max_player_option_button.text.to_int()
 	print(num, MaxPlayers)
 
-func start_game(game_scene_path):
-	get_tree().change_scene_to_file(game_scene_path)
+#func start_game():
+	#get_tree().change_scene_to_file("res://test_main.tscn")

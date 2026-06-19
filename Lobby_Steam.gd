@@ -5,6 +5,8 @@ var lobby_id: int = 0
 var is_host: bool = false
 var is_joining: bool = false
 
+var players = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Steam init: ", Steam.steamInit(480, true))
@@ -31,6 +33,7 @@ func _process(_delta: float) -> void:
 
 func create_steam_lobby(player_count):
 	print("Creating Lobby")
+	players.clear()
 	Steam.createLobby(Steam.LobbyType.LOBBY_TYPE_PUBLIC, player_count)
 
 func _on_lobby_created(result: int, lobby_id_in: int):
@@ -43,7 +46,6 @@ func _on_lobby_created(result: int, lobby_id_in: int):
 		peer.server_relay = true
 		peer.create_host()
 		multiplayer.multiplayer_peer = peer
-		print("Peer:", multiplayer.multiplayer_peer)
 		print("Connection:", multiplayer.multiplayer_peer.get_connection_status())
 		
 		# Copying ID to clipboard
@@ -71,10 +73,12 @@ func _on_lobby_joined(lobby_id: int, permissions: int, response: int, userid: in
 	peer.create_client(Steam.getLobbyOwner(lobby_id))
 	multiplayer.multiplayer_peer = peer
 	print("Joined Steam Lobby!")
-	print("Peer:", multiplayer.multiplayer_peer)
 	print("Connection:", multiplayer.multiplayer_peer.get_connection_status())
 	
 	is_joining = false
+
+func start_game():
+	get_tree().change_scene_to_file("res://test_main.tscn")
 
 func _peer_connected(id):
 	print("Peer connected: ", id)
