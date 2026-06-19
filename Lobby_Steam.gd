@@ -77,12 +77,36 @@ func _on_lobby_joined(lobby_id: int, permissions: int, response: int, userid: in
 	
 	is_joining = false
 
+signal countdown_started(seconds: int)
+signal countdown_tick(seconds_left: int)
+
+var countdown_active: bool = false
+
+func request_start_game():
+	# Only the host is allowed to actually trigger this
+	if not multiplayer.is_server():
+		return
+	_begin_countdown.rpc()
+
 @rpc("call_local", "reliable")
-func start_game():
+func _begin_countdown():
+	if countdown_active:
+		return
+	countdown_active = true
+	countdown_started.emit(5)
+		
+	for i in range(5, 0, -1):
+		countdown_tick.emit(i)
+		await get_tree().create_timer(1.0).timeout
+		
+	# Only the host actually flips the scene authoritatively;
+	# call_local already means this runs on everyone via the RPC itself.
 	get_tree().change_scene_to_file("res://test_main.tscn")
 
 func _peer_connected(id):
 	print("Peer connected: ", id)
+	if multiplayer.get_peers().size() == Steam.getLobbyMemberLimit(LobbySteam.lobby_id):
+		print("Max Players Reached, starting game in 5 seconds UNFINISHED")
 
 func _peer_disconnected(id):
 	print("Peer disconnected: ", id)

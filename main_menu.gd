@@ -21,7 +21,7 @@ var MaxPlayers = 2
 func _ready() -> void:
 	create_button.pressed.connect(open_host_tab)
 	join_button.pressed.connect(join_game)
-	play_button.pressed.connect(LobbySteam.start_game.rpc) # Test
+	play_button.pressed.connect(LobbySteam.request_start_game) # Test
 	id_editor.text_changed.connect(update_ID)
 	host_button.pressed.connect(create_new)
 	max_player_option_button.item_selected.connect(max_players_updated)
