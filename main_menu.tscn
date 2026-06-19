@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkvaoapusncak" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://cljemw2ynqmns" path="res://chat_box.gd" id="2_7vrkn"]
 [ext_resource type="Script" uid="uid://bp7awi6j8f3ga" path="res://debug.gd" id="3_fu7sn"]
+[ext_resource type="Script" uid="uid://dv6poawoi8es5" path="res://popup_panel.gd" id="4_jix8l"]
 
 [node name="Control" type="Control" unique_id=1115916712]
 layout_mode = 3
@@ -10,9 +11,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -3.0
-offset_top = -15.0
 offset_right = -3.0
-offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
@@ -27,41 +26,42 @@ text = "WOW AWESOME MULTIPLAYER TEST GAME LETS GOOOOOOOOOOOOOOOOOOOOOOOOOOO"
 
 [node name="Label2" type="Label" parent="." unique_id=1967678443]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 182.0
-offset_right = 1050.0
-offset_bottom = 280.0
+offset_left = 9.0
+offset_top = 180.0
+offset_right = 169.0
+offset_bottom = 204.0
 text = "Singleplayer (Boring)"
 
 [node name="Label3" type="Label" parent="." unique_id=363157010]
 layout_mode = 0
-offset_top = 308.0
-offset_right = 1046.0
-offset_bottom = 406.0
+offset_left = 7.0
+offset_top = 306.0
+offset_right = 96.0
+offset_bottom = 332.0
 text = "Multiplayer"
 
 [node name="CreateButton" type="Button" parent="." unique_id=583635261]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 377.0
-offset_right = 104.0
-offset_bottom = 412.0
+offset_left = 6.0
+offset_top = 375.0
+offset_right = 109.0
+offset_bottom = 410.0
 text = "Create"
 
 [node name="JoinButton" type="Button" parent="." unique_id=290338765]
 layout_mode = 0
-offset_left = -1.0
+offset_left = 5.0
 offset_top = 336.0
-offset_right = 102.0
+offset_right = 108.0
 offset_bottom = 371.0
 text = "Join"
 
 [node name="PlayButton" type="Button" parent="." unique_id=1768547673]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 218.0
-offset_right = 105.0
-offset_bottom = 253.0
+offset_left = 6.0
+offset_top = 219.0
+offset_right = 109.0
+offset_bottom = 254.0
 text = "Play"
 
 [node name="MultiplayerText" type="Label" parent="." unique_id=39044065]
@@ -73,17 +73,17 @@ offset_bottom = 365.0
 
 [node name="Label4" type="Label" parent="." unique_id=1296650933]
 layout_mode = 0
-offset_left = 1.0
+offset_left = 3.0
 offset_top = 485.0
-offset_right = 41.0
+offset_right = 103.0
 offset_bottom = 508.0
 text = "Logged in as:"
 
-[node name="IPEditor" type="LineEdit" parent="." unique_id=1509628110]
+[node name="IDEditor" type="LineEdit" parent="." unique_id=1509628110]
 layout_mode = 0
-offset_left = 107.0
+offset_left = 113.0
 offset_top = 338.0
-offset_right = 268.0
+offset_right = 274.0
 offset_bottom = 369.0
 placeholder_text = "Enter an ID"
 max_length = 32
@@ -94,27 +94,31 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_7vrkn")
 
-[node name="ChatBox" type="VBoxContainer" parent="ChatBoxController" unique_id=1959327635]
-layout_mode = 0
-offset_left = 804.0
-offset_top = 451.0
-offset_right = 1150.0
-offset_bottom = 626.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ChatBoxController/ChatBox" unique_id=335588397]
-layout_mode = 2
-size_flags_vertical = 3
-follow_focus = true
-
-[node name="ChatHistory" type="VBoxContainer" parent="ChatBoxController/ChatBox/ScrollContainer" unique_id=453954932]
-layout_mode = 2
-
 [node name="ChatInput" type="LineEdit" parent="ChatBoxController" unique_id=1888189486]
 layout_mode = 0
 offset_left = 802.0
 offset_top = 628.0
 offset_right = 1151.5
 offset_bottom = 659.0
+
+[node name="FoldableContainer" type="FoldableContainer" parent="ChatBoxController" unique_id=276996453]
+layout_mode = 0
+offset_left = 806.0
+offset_top = 385.0
+offset_right = 1148.0
+offset_bottom = 625.0
+title_position = 1
+
+[node name="ChatBox" type="VBoxContainer" parent="ChatBoxController/FoldableContainer" unique_id=1959327635]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChatBoxController/FoldableContainer/ChatBox" unique_id=335588397]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="ChatHistory" type="VBoxContainer" parent="ChatBoxController/FoldableContainer/ChatBox/ScrollContainer" unique_id=453954932]
+layout_mode = 2
 
 [node name="Debug" type="Control" parent="." unique_id=2107651432]
 anchors_preset = 0
@@ -124,26 +128,26 @@ script = ExtResource("3_fu7sn")
 
 [node name="ConnectionStatus" type="Label" parent="Debug" unique_id=241659915]
 layout_mode = 0
-offset_left = 425.0
-offset_top = 592.0
-offset_right = 474.0
-offset_bottom = 615.0
+offset_left = 5.0
+offset_top = 593.0
+offset_right = 54.0
+offset_bottom = 616.0
 text = "Status"
 
 [node name="PeerStatus" type="Label" parent="Debug" unique_id=302869259]
 layout_mode = 0
-offset_left = 428.0
-offset_top = 613.0
-offset_right = 468.0
-offset_bottom = 636.0
+offset_left = 8.0
+offset_top = 614.0
+offset_right = 48.0
+offset_bottom = 637.0
 text = "Peer"
 
 [node name="SteamID" type="Label" parent="Debug" unique_id=170072649]
 layout_mode = 0
-offset_left = 427.0
-offset_top = 634.0
-offset_right = 493.0
-offset_bottom = 657.0
+offset_left = 7.0
+offset_top = 635.0
+offset_right = 73.0
+offset_bottom = 658.0
 text = "SteamID"
 horizontal_alignment = 1
 
@@ -154,3 +158,89 @@ offset_top = 507.0
 offset_right = 43.0
 offset_bottom = 530.0
 text = "DefaultName"
+
+[node name="CreateLobbyBox" type="Control" parent="." unique_id=1456926495]
+visible = false
+self_modulate = Color(0.24601722, 0.19974774, 0.0789775, 1)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PopupPanel" type="PopupPanel" parent="CreateLobbyBox" unique_id=1394347623]
+oversampling_override = 1.0
+initial_position = 4
+size = Vector2i(187, 100)
+script = ExtResource("4_jix8l")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreateLobbyBox/PopupPanel" unique_id=1067289811]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 183.0
+offset_bottom = 96.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreateLobbyBox/PopupPanel/MarginContainer" unique_id=18551026]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CreateLobbyBox/PopupPanel/MarginContainer/VBoxContainer" unique_id=349289069]
+layout_mode = 2
+text = "ID Copied to Clipboard!"
+
+[node name="Button" type="Button" parent="CreateLobbyBox/PopupPanel/MarginContainer/VBoxContainer" unique_id=664760202]
+layout_mode = 2
+text = "Ok"
+
+[node name="Panel" type="Panel" parent="CreateLobbyBox" unique_id=1453452293]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 239.0
+offset_right = 641.0
+offset_bottom = 480.0
+
+[node name="Title" type="Label" parent="CreateLobbyBox/Panel" unique_id=644483015]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 46.0
+offset_bottom = 29.0
+text = "Test"
+
+[node name="CheckButton" type="CheckButton" parent="CreateLobbyBox/Panel" unique_id=2028764603]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 68.0
+offset_right = 40.0
+offset_bottom = 92.0
+
+[node name="MaxPlayerOptionButton" type="OptionButton" parent="CreateLobbyBox/Panel" unique_id=1115471753]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 117.0
+offset_right = 52.0
+offset_bottom = 148.0
+selected = 0
+item_count = 3
+popup/item_0/text = "2"
+popup/item_0/id = 0
+popup/item_1/text = "3"
+popup/item_1/id = 1
+popup/item_2/text = "4"
+popup/item_2/id = 2
+
+[node name="PlayersTitle" type="Label" parent="CreateLobbyBox/Panel" unique_id=1023075525]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 99.0
+offset_right = 112.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 12
+text = "Amount of Players"
+
+[node name="HostButton" type="Button" parent="CreateLobbyBox/Panel" unique_id=1154647861]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 197.0
+offset_right = 276.0
+offset_bottom = 231.0
+text = "Host"
+
+[connection signal="pressed" from="CreateLobbyBox/PopupPanel/MarginContainer/VBoxContainer/Button" to="CreateLobbyBox/PopupPanel" method="_on_button_pressed"]

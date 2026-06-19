@@ -15,18 +15,23 @@ func _ready() -> void:
 	
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	
-	#Peer layer
+	# Peer layer
 	multiplayer.peer_connected.connect(_peer_connected)
 	
 	multiplayer.peer_disconnected.connect(_peer_disconnected)
+	
+	## Setting up pop-up
+	#popup_panel.exclusive = false
+	#
+	#popup_panel.popup_window = true
 
 func _process(_delta: float) -> void:
 	# Crucial: This must run every frame to process Steam network messages and handshakes
 	Steam.run_callbacks()
 
-func create_steam_lobby():
+func create_steam_lobby(player_count):
 	print("Creating Lobby")
-	Steam.createLobby(Steam.LobbyType.LOBBY_TYPE_PUBLIC, 4)
+	Steam.createLobby(Steam.LobbyType.LOBBY_TYPE_PUBLIC, player_count)
 
 func _on_lobby_created(result: int, lobby_id_in: int):
 	if result == Steam.Result.RESULT_OK:
@@ -40,6 +45,10 @@ func _on_lobby_created(result: int, lobby_id_in: int):
 		multiplayer.multiplayer_peer = peer
 		print("Peer:", multiplayer.multiplayer_peer)
 		print("Connection:", multiplayer.multiplayer_peer.get_connection_status())
+		
+		# Copying ID to clipboard
+		DisplayServer.clipboard_set(str(lobby_id))
+		
 		#Creating/Removing player function goes here
 
 func join_steam_lobby(target_lobby_id: int):

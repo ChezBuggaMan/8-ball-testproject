@@ -1,6 +1,6 @@
 extends Control
 
-@onready var chat_history: VBoxContainer = $ChatBox/ScrollContainer/ChatHistory
+@onready var chat_history: VBoxContainer = $FoldableContainer/ChatBox/ScrollContainer/ChatHistory
 @onready var chat_input: LineEdit = $ChatInput
 
 # Called when the node enters the scene tree for the first time.
