@@ -126,6 +126,7 @@ func _notify_scene_ready():
 	print ("Peer ready: ", sender, ", ready set: ", clients_ready.keys())
 	
 	if multiplayer.is_server():
+		print("Checking if everyone is ready...")
 		_check_all_ready()
 
 func _check_all_ready():
@@ -133,6 +134,8 @@ func _check_all_ready():
 	expected.append(multiplayer.get_unique_id())
 	for id in expected:
 		if not clients_ready.has(id):
+			print("Not ready!")
 			return
 	# Otherwise everyone is loaded, and its safe to spawn them
+	print("Everyone is ready, calling spawners.")
 	get_tree().call_group("spawner_ready_listeners", "do_spawn")
