@@ -1,6 +1,8 @@
 extends MultiplayerSpawner
 
 func _ready() -> void:
+	LobbySteam._notify_scene_ready.rpc()
+	
 	spawn_function = _on_spawn
 	add_to_group("spawner_ready_listeners")
 
