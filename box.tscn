@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bqqdtn6uwihyn"]
+
+[ext_resource type="PackedScene" uid="uid://bil0df5y81c6u" path="res://entity.tscn" id="1_g2tbl"]
+[ext_resource type="Script" uid="uid://c7k62kqyb1em8" path="res://box.gd" id="2_oq5cr"]
+[ext_resource type="PackedScene" uid="uid://np0c6s8nfle3" path="res://BoxMesh.tscn" id="3_bqn3j"]
+
+[node name="Box" unique_id=1021605991 instance=ExtResource("1_g2tbl")]
+script = ExtResource("2_oq5cr")
+EntityModel = ExtResource("3_bqn3j")

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dsqy8fvbbefd4" path="res://cue.tscn" id="1_b6ro0"]
 [ext_resource type="Script" uid="uid://bfx7g3le54w7n" path="res://multiplayer_spawner.gd" id="3_2n3av"]
+[ext_resource type="PackedScene" uid="uid://bqqdtn6uwihyn" path="res://box.tscn" id="3_nuuvo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b6ro0"]
 
@@ -54,3 +55,6 @@ shape = SubResource("ConcavePolygonShape3D_tcanr")
 _spawnable_scenes = PackedStringArray("uid://bv3kqwt86k6ig")
 spawn_path = NodePath("../Game")
 script = ExtResource("3_2n3av")
+
+[node name="Box" parent="." unique_id=1021605991 instance=ExtResource("3_nuuvo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
