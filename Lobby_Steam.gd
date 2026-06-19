@@ -77,6 +77,7 @@ func _on_lobby_joined(lobby_id: int, permissions: int, response: int, userid: in
 	
 	is_joining = false
 
+@rpc("call_local", "reliable")
 func start_game():
 	get_tree().change_scene_to_file("res://test_main.tscn")
 
