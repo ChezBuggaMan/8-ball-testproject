@@ -14,6 +14,11 @@ func _ready() -> void:
 	Steam.lobby_created.connect(_on_lobby_created)
 	
 	Steam.lobby_joined.connect(_on_lobby_joined)
+	
+	#Peer layer
+	multiplayer.peer_connected.connect(_peer_connected)
+	
+	multiplayer.peer_disconnected.connect(_peer_disconnected)
 
 func _process(_delta: float) -> void:
 	# Crucial: This must run every frame to process Steam network messages and handshakes
@@ -38,10 +43,15 @@ func _on_lobby_created(result: int, lobby_id_in: int):
 		#Creating/Removing player function goes here
 
 func join_steam_lobby(target_lobby_id: int):
+	print("Attempting Connection to LobbyID: ", target_lobby_id)
 	is_joining = true
-	Steam.joinLobby(lobby_id)
+	Steam.joinLobby(target_lobby_id)
 
 func _on_lobby_joined(lobby_id: int, permissions: int, response: int, userid: int):
+	print("Lobby joined callback!")
+	print("Lobby:", lobby_id)
+	print("Response:", response)
+	print("Owner:", Steam.getLobbyOwner(lobby_id))
 	
 	if !is_joining:
 		return
@@ -56,3 +66,9 @@ func _on_lobby_joined(lobby_id: int, permissions: int, response: int, userid: in
 	print("Connection:", multiplayer.multiplayer_peer.get_connection_status())
 	
 	is_joining = false
+
+func _peer_connected(id):
+	print("Peer connected: ", id)
+
+func _peer_disconnected(id):
+	print("Peer disconnected: ", id)
